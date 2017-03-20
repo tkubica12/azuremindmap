@@ -1,0 +1,770 @@
+Migration
+	Applications
+		Lift and shift IaaS
+			Azure Site Recovery
+				Clone on-premise VMs to Azure storage
+				For first 31 you pay storage cost only
+				Start VMs in Azure
+			3rd party (eg. Veeam Recover to Azure)
+		Infrastructure as code
+			Standardize OS images
+			Automate OS state
+				Ansible
+				PowerShell DCS
+				Chef
+				Puppet
+			Automate custom images
+				Packer
+				Other iterative tools (HPE OO, Ansible, ...)
+			Automate Infrastructure
+				ARM
+				Terraform
+				CloudForms
+		Containers to package and run apps
+		Platform as a service
+		Serverless
+	Data
+		Structured (DB)
+			IaaS (DB in VM)
+				SQL Server
+					Import/Export
+					Transaction replication
+					SQL Server Migration Assistant
+						Access
+						DB2
+						MySQL
+						Oracle
+						Sybase
+					Disk-level (copy VHD to Azure or ship HDD)
+					Always-on replica
+			PaaS (managed data services)
+				Azure SQL
+					Import/Export
+					Transaction replication from SQL Server
+				DocumentDB import tool
+					JSON and CSV files
+					MongoDB
+					SQL Server
+					Azure Table Storage
+					Amazon DynamoDB
+					HBase
+		Objects (files, images, video)
+		Events and logs
+	Security, compliance, networking
+		Network topology
+			Some 3rd party solutions available as virtual applicances
+				Cisco
+				F5
+				Checkpoint
+				Palo Alto
+				F5
+				A10
+				KEMP
+				Barracuda
+				... and more
+			Use UDR to insert VNF (inter-subnet routing in VNet)
+			VNet peering
+			Service chaining
+			Hub-and-spoke
+		Encryption requirements
+			Data at rest using Azure-managed keys
+				Azure Blob Storage
+				Azure File Storage
+				Azure SQL TDE
+			Data at rest using customer-managed keys in Key Vault
+				Azure Disk
+				SQL Server in Azure VM TDE
+			Client-side encryption (SDK and Key Vault)
+				Azure Blob Storage
+				Azure Queue Storage
+				Azure Table Storage
+				Azure SQL Always Encrypted
+	Identity
+		Cloud-only Identity
+		Sync with cloud (same sign on)
+			Azure AD Sync from AD to Azure AD
+				Synchronize username only
+				Synchronize password hash
+					No need for plaintext
+					No need for reversible encryption
+		Federate on-premise with cloud apps (password stay on-prem only)
+			Use ADFS / ADFS proxy
+		Lift and shift AD to IaaS VM
+Azure use cases
+	Backup to cloud
+		Azure Backup (Microsoft DPM)
+			Azure IaaS
+			Azure SQL
+			On-premise
+				Hyper-V
+				VMware
+				SQL Server
+				Folders and clients
+		3rd party solutions
+			Veeam
+				Backup to VM (Cloud Connect)
+				Backup to StorSimple
+				Restore to Azure
+			HPE
+				Backup to BLOB - VM Explorer
+				Backup to BLOB - Data Protector
+			Commvault
+				Backup to BLOB - Data Management
+			Veritas
+				Backup to BLOB - NetBackup 8.0
+			EMC
+				Backup to BLOB
+			IBM
+				Backup to StorSimple
+		Disaster recovery (Azure Site Recovery)
+			Modes
+				Site-to-cloud
+				Site-to-site
+			Hypervisors
+				Hyper-V
+				VMware
+			Benefits
+				Pay for storage, not for servers, when not needed
+				No captial investment (facility, network, devices)
+				Automate beyond VMs (networks, firewall rules, DNS, ...)
+	Cloud tiering/bursting
+		Data
+			StorSimple
+				Block device (iSCSI)
+				File share (SMB)
+			Azure SQL stretched cluster
+			3rd party solutions
+				EMC VNX + Cloud Tiering Appliance
+				EMC CloudArray
+		Compute
+			DevTest
+				Azure plug-ins for Jenkins 2.0
+			HPC
+				Burst to Azure Batch with Microsoft HPC Pack
+		Identity
+			Synchronize Azure AD with your AD
+			Extend with B2C and B2B
+	DevTest, DevOps and CI/CD in cloud
+		Build simple to use envirment (Devtest Labs)
+		Create complex ready-to-use topologies (ARM templates)
+			Automate infrastructure, networking, DNS, ...
+			Desired state (maintain, update, scale, ...)
+			Human readable (JSON), version control friendly (eg. Git)
+		Clone and mask data (Azure SQL)
+		Deploy containers and orchestratos (Azure Container Service)
+		Leverage Deployment Slots in Azure App Services
+			Deployment automation (eg. GitHub integration - branch to slot)
+			Pre-hydrate, swap slots, ...
+			Testing in production (A/B testing)
+		Application insights
+			Detect and diagnose exceptions and performance issues
+			Monitor web sites (in both Azure and on-premise)
+			Integrate to CI/CD pipeline (VSTS, GitHub, ...)
+		Mobile apps testing and development
+			HockeyApp
+				Distribution
+				Feedback collection
+				Beta testing
+				Live crash reports
+			Xamarin
+		Use Azure plugins for Jenkins 2.0
+		Support in automation and config management tools
+			Red Hat Ansible
+			Red Hat CloudForms (ManageIQ)
+			Chef
+			Puppet
+			Terraform
+	Open source in Azure
+		Running Linux in Azure
+			Red Hat partnership
+				Collocated support
+				Curated images
+				BYOL (RHCA, move your licence to cloud) or on-demand licensing (pay-per-minute)
+			SUSE partnership
+				BYOL (SUSE BYOS) or on-demand licensing (pay-per-minute)
+				Certified for SAP
+			Other Linux distributions available in marketplace
+				CoreOS (Container OS)
+				Debian
+				Oracle Linux (BYOL)
+				openSUSE
+				Ubuntu
+				CentOS by OpenLogic
+				Clear Linux OS
+				RancherOS (BYOL)
+		Platform as a Service
+			Pivotal Cloud Foundry
+			Red Hat OpenShift
+		Container orchestrators (Azure Container Service)
+			Docker Swarm
+			DC/OS (Mesos, Marathon)
+			Kubernetes
+		Linux-based App Services (PaaS)
+		Azure Service Fabric on Linux
+		Microsoft SQL Server on RHEL (Preview)
+		Databases
+			Marketplace (VM-based, certified)
+				Strong commercial support
+					Cassandra (DataStax)
+					MySQL (ClearDB)
+					Couchbase
+					OrientDB (OrientDB Ltd)
+				Hardened (Cognosys, Bitnami, ...)
+					Aerospike
+					ArangoDB
+					Neo4j	
+					PostgreSQL
+					MongoDB
+					MariaDB
+					CouchDB
+			Managed (PaaS)
+				Azure Redis Cache
+				Azure DocumentDB for MongoDB (API compatible)
+	Data in cloud
+		Why data in Azure
+			Gravity, move data between uses and platforms
+				Ingest events (eg. to Event Hub)
+				Transactions (eg. in Azure SQL)
+				Analyze in real time (eg. in Storm or Spark Streaming)
+				Analyze in batches (Hadoop, Spark)
+				Transform to OLAP (from OLTP to DW)
+				Visualize (eg. PowerBI)
+				Cognitive analytics (faces, objects, speech to text, OCR)
+				Video services (blur faces, stabilize, transcode, protect rights)
+			Huge scale, pay per actual use
+			Planet-wide replication
+		Structured and semistructured data
+			Azure SQL Database (traditional relational ACID compliant DB)
+			Azure SQL DW (masivelly parallel relational analytics)
+			Azure DocumentDB (planet-scale JSON store, MongoDB APIs compatible)
+			Azure Table Storage (huge and cheap simple NoSQL key-value store)
+			Azure Redis (caching)
+		Unstructured data
+			Azure HDInsight
+				Hadoop
+				Spark
+				R Server
+				Kafka
+				HBase
+				Hive
+			Azure Data Factory (data movement service)
+			Azure Blob Storage
+			Azure Data Lake (massive PB-files storage, YARN based)
+			Azure Data Lake Analytics (Big Data as a Service)
+			Machine Learning (predict future)
+		Event-based data
+			Streaming Analytics (real-time analytics as a service)
+			HDInsight (Storm, Spark Streaming, Kafka)
+			Event Hub (Ingestion service)
+	IoT in cloud
+		Serverless business logic (Azure Functions on triggers)
+		IoT Hub
+			Connect devices
+			Monitor devices
+			Manage devices
+			Ingest events and files
+		IoT Gateway SDK
+		Windows 10 IoT Core
+		Streaming Analytics (react to events in real time)
+		Machine Learning (predict future)
+	Superapplications
+		Identity Management
+			Multi-factor authentication
+				Available for Azure AD
+				Azure MFA for on-premise (ADFS with MFA Server)
+			Manage B2C - identity solution for your customer-facing apps
+				Apps supported
+					Web
+					API
+					Mobile and native
+				Multi-factor authentication
+				Self-service registration, password reset
+				Federate with other providers
+					Microsoft account
+					Google
+					Facebook
+					LinkedIn
+					Amazon
+				UI customization
+			B2B federations
+				Invite contractors to internal apps
+					Any email
+					Custom layout
+					Delegation support
+					Multi-factor authentication support
+		Video Services
+			Encoding, transcoding, streaming
+			Digital Rights
+			Face redaction
+			Stabilization
+			Motion detection
+			Face and emotion recognition
+			Video and image thumbnail
+			Video OCR
+			Video indexer (speech to subtitles)
+		Cognitive Services
+			Recommendations
+			Search
+			Text / speech / image
+			Text analytics (sentiment analysis)
+			Translator (including real-time speech)
+			Speaker recognition
+			Detect, analyze, organize and tag faces
+			Emotion recognition (face)
+			Scene detection
+			Language modeling (combination/sequence probability, ...)
+			Text, video, image moderation
+			Celebrity recognition
+		Bot Service
+			Serverless Bot
+			Easy to connect to cognitive services
+		PowerBI
+			Visualize data for Finance, HR, Sales and more
+			Embedd into mobile applications
+		PowerApps - create business apps easily
+	Cloud-only company
+		Win10 + Azure AD
+		Office365, SharePoint Online, Dynamics365
+		Intune
+		PowerApps
+		PowerBI
+		Azure for apps, data and services
+			Web and mobile apps
+			Development
+			Data (Azure SQL, DocumentDB, analytics, Blob store, ...)
+	Containers, container orchestrators, open source PaaS
+		Issues with using containers on-premise
+			Less solid isolation with containers
+				Need for multiple clusters (one per BU, zone, ...)
+				Need to automate cluster creation
+				Need to automate adding or removing nodes
+			Networking is always issue
+				Overlay in containers, overlay on top of IaaS overlay
+				Internal LB is easy, but how to automate external LB (access to apps)
+				How to deal with DNS
+				Firewall, microsegmentation on infra level vs. VM level vs. Container level
+			What orchestrator should I chooce
+			Complex to setup a cluster properly (security etc.)
+		Containers on Azure
+			Most open choice (all major open source options)
+			No breaking tweeks, pure open source, great for hybrid
+			Best practice incorporated and automated (take advantage now, save time and money)
+			Integrated with IaaS layer
+		Azure Container Service
+			Docker Swarm
+			Kubernetes
+			DC/OS (aka Mesos/Marathon)
+		Pivotal Cloud Foundry (available in marketplace)
+		Red Hat OpenShift (supported in Azure RHEL VMs)
+	API economy
+		Regulations (eg. PSD2)
+		New opportunities (B2B, virtual operator, bank, utilities, ...)
+		Manage API lifecycle (Azure API Management)
+		Deploy and maintain API endpoints (Azure App Services)
+	SAP in Azure
+		SAP customers jurney
+			Mostly S/3 on NetWeaver layer (MS SQL, Oracle or DB2)
+			SAP announced EOL for NetWeaver in 2025
+			SAP HANA - their won in-memory DB solution
+			Customer can migrate S/3 to HANA
+			Long-term migration from S/3 to SAP/4HANA (currently BIG gaps in features)
+		Testing and Development environment
+		Run S/3 (SAP Busines Suite, TREX, Live Cache, Content Server) with NetWeaver in cloud
+			SAP products supported (basically full S/3)
+				SAP Business Suite (Windows, SUSE, RHEL)
+				TREX (Windows, SUSE, RHEL)
+				Live Cache (Windows, SUSE, RHEL)
+				Content Server (Windows, SUSE, RHEL)
+				SAP Business Objects and Data Services (Windows)
+			Migrate App layer to Azure VMs (Windows, SUSE, RHEL)
+			NetWeaver (database layer)
+				Run (or migrate) to SQL Server in Azure VM
+				Lift and shift non-MSSQL DB
+					DB2 (Windows, SUSE, RHEL)
+					Oracle (in Windows OS only)
+			Certified VMs
+				A5 or higher (testing and development)
+				D11/DS11/DS11v2 or higher (production)
+				GS (higher-end production)
+				Always run database (NetWeaver) on Premium Storage (DS, GS)
+		Run HANA in cloud
+			Use cases
+				Migrate S/3 to HANA as database
+				Migrate to S/4HANA
+			Azure solutions for HANA
+				Big VMs (GS5, more to come)
+				Large Instances
+					Bare metal solution, certified HW
+					1-year minimum commitment
+					4TB RAM single node (OLTP)
+					32TB RAM multi-node (OLAP)
+					Storage replication, auto failover
+			Certified scenarios
+				SAP HANA Developer Edition
+					SUSE
+					A5 and higher, D11/DS11/DS11v2 and higher, GS
+				SAP HANA One (SMB-oriented all-in-one cloud solution)
+					SUSE
+					DS14_v2
+				S/4HANA
+					SUSE or RHEL
+					Non-production - GS5
+					Production - Azure Large Instances
+				S/3 on HANA (OLTP)
+					SUSE or RHEL
+					Non-production - GS5
+					Production - Azure Large Instances
+				SAP HANA for BW or BW/4HANA
+					SUSE or RHEL
+					Production - Azure Large Instances or GS5
+	Citrix in Azure
+Management - not less important in cloud
+	SaaS-based hybrid cloud management (OMS)
+		ITSM Connectors
+			Cherwell
+			Provance
+			System Center Service Manager
+			ServiceNow
+		Access from anywhere
+			Any browser, no client or Java
+			Support multi-factor authentication
+			Android, iOS and Windows mobile App
+		Monitor, analyze, get insights
+			Monitor OS, CPU, RAM
+			Deep log analytics
+			Enderstand service map (who talks to who on what service)
+				System dependencies
+				Network communication (agent based)
+				Correlate with network device information (NetFlow, topology)
+			Monitor network (latency, availability) on any network (cloud, on-prem, any vendor)
+			Network device monitoring (SNMP, NetFlow)
+			Communication patterns (protocols, destinations, ...)
+			SQL Assessment
+			Azure SQL Analytics
+			Azure Web Apps Analytics
+			Office 365 Analytics
+			Alert on critical events
+			VMware monitoring
+			Capacity and performance monitring for Hyper-V
+			Containers
+			MS System Center integration
+		Application insights
+			App latency and performance down to procedur/function level
+			HTTP response analyses, trending
+			Broken link analyses
+		Security, auditing, compliance
+			What needs to be patched (Windows, Linux)
+			What has changed (Windows, Linux)
+			Where servers communicate (+ threat intelligence on IP and DNS)
+			Correlate security events
+			Antimalware assessment (Symantec, Trend Micro)
+			AD Assessment
+		Automate and orchestrate
+			Azure Automation
+				Powershell runbooks
+				Bash / Python scripts
+			Orchestrated recovery
+			Hybrid automation (leverages SCOM)
+			Supports on-premise, Azure, AWS
+		Protect and recover
+			Azure Backup
+				Hyper-V, VMware
+				Azure IaaS
+				Azure SQL
+				App consistend backup for Windows and Linux
+				Encryption
+			Azure Site Recovery
+				Scenarios
+					Site-to-site
+					Site-to-Azure
+				Server support
+					VMware
+					Hyper-V
+					Physical
+				Benefits
+					Pay for storage, not for CPU, RAM, Net and DC unless you need it
+					DR platform, not just license
+					Automate more than VMs (network, data, ...)
+					Orchestrated recovery
+					Continuous health monitoring
+					Free service for first 31 days (great fo migrations)
+	Azure specific insights
+		Azure Security Center
+			Security alerts and recommendations
+			Integrates 3rd party solutions
+				F5 Web Application Firewall
+				Qualys
+				CheckPoint firewall
+			VMs
+				System updates
+				Endpoint protection
+				Vulnerabilities
+				Disk encryption status
+			Networking
+				NSG and NGFW status on VNICs and VNETs
+				Internet-accessible endpoints
+				Just in time VM access (future)
+			SQL and Data
+				Auditing and threat detection status
+				Transparent encryption status
+			Applications
+				WAF status
+		Azure Monitor - agentless (data from Azure platform)
+			Near-real-time stats (CPU, memory, DB transactions)
+			Single tool for may Azure resources (VMs, storage, DBs, PaaS, ...)
+			Logging, alerting, SMS, webhooks
+		Azure Advisor - recommendations
+			High availability
+			Security
+			Performance
+			Cost
+Assessment, what to gather
+	Applications
+		Level of infrastructure dependency
+		Criticality for business
+		SLA target, RPO/RTO
+		Integration points (ESB, DB, APIs)
+		OS requirements and versions (Windows, Linux, Unix)
+		Middleware requirements (WebLogic, JBOSS, ...)
+		Performance and capacity requirements
+			Memory
+			CPU
+			Disk I/O
+			Network I/O
+			Latency
+		Architecture and service map (what needs to talk to what)
+	Data
+		How are stored
+			What transactional DB is used (MS SQL, MySQL, Oracle, ..)
+			What NoSQL DB is used (MongoDB, Cassandra, HBase, ...)
+			Events / time-series (Elastic, InfluxDB, ...)
+			NAS (what type, protocol, capacity)
+			File share
+			Object storage
+		What is it
+			Business transactions
+			Meters and IoT (time-series data)
+			Logs
+			User files
+			Backup files and archive
+			Images, scans, video
+		How are processed
+			OLAP / Data warehouse / BI
+			Real-time event processing (Storm, Spark Streaming, Kafka)
+			Batch processing (Hadoop, Spark, Exadata)
+			Video transcoding, processing
+	Security and compliance
+		Compliance and regulations
+		Risk Management
+		Data classification
+		Security zones and isolation needs
+		In-network appliances
+			IPS
+			FW / NGFW
+			WAF, DLP
+			VPN
+		Encryption at rest needs
+		Encryption in fly needs
+		Geolocation needs
+	Business continuity
+		Backup strategy
+			Disk/VM level vs. File level vs. DB level
+			RTO/RPO
+			Backup tiering, primary vs. secondary targets
+			Geo strategy (tape shipment, DR site, cloud)
+			3rd party software used (Veeam, EMC, Commvault, Veritas, HPE, ...)
+		High availability
+			Within DC/region
+				Compute
+				Storage
+				Database
+				Application (stateful vs. stateless)
+				Load balancing
+				Connectivity, networking
+			Between DCs/Datacenters
+				Active/Active or Active/Standby
+				Networking and connection (stretched L2 vs. L3 vs. overlay)
+				WAN connectivity (MPLS to branches, BGP AS etc.)
+				Failover design and testing
+				Global balancing (DNS)
+		Disaster recovery
+			RPO/RTO target for major events (DC down)
+	Infrastructure
+		Understand current lifecycle
+		Physical compute (CPU type, bandwidth, ...)
+		Virutalization (type, ratio, overcommit)
+		Networking, VLANs, zones, firewalls
+		Network security (IPS, DLP, DDoS, ...)
+	Operations and processes
+		ITSM tools (ServiceNow, ...)
+		Release process
+		Dev/Test process
+		Incident management and response
+		Capacity planning
+		Change management
+	Identity management
+		Identity repository (Active Directory, LDAP, RHDS)
+		Federation and trust
+		Multi-factor authentication
+		Authentication needs
+			Web applications (domain, IIS, OAuth)
+			Line of business apps (desktop apps)
+			Mobile applications
+			VPN and network (RADIUS)
+			Singe-sign-on
+	Development, release management, innovation
+		Sourcing
+			In-house development
+			Outsourced development
+			Box software
+			SaaS
+		Testing environment, testing automation
+		Agile teams vs. waterfall teams
+		Continuous Integration / Continuous Delivery
+		Do they talk about modern methods
+			Microservices
+			Containers (Docker, Kubernetes, DC/OS)
+			Serverless (Functions as a Service)
+			PaaS for microservices 
+		DevOps
+		Release cadence, process
+		Innovation process (innovation labs, bimodal IT, hackathons, ...)
+		Major development teams and their tools
+			Mobile / web teams (Xamarin, Java, NodeJS, ...)
+			Java teams
+			.NET teams
+	Financials
+		Operational cost of IT
+		IT to profit/revenue spendings
+		CAPEX vs. OPEX
+		Identify key IT cost centers
+Define cloud roadmap
+	https://info.microsoft.com/enterprise-cloud-strategy-ebook.html
+	What tends to be good to start with
+		Short project, easy to migrate
+		Self contained app with clear dependencies
+		Big impact after migration
+			Bad app in VM moved to Azure VM might be fine, but won't shine
+			DevTest - rapid improvement, not waiting for VM for 2 weeks
+			Modernize app with PaaS, better looking, faster, new features - everybody will notice
+			Safe 50% or more costs due to autoscaling (VM Sets, App Services, containers, ...)
+			Change the game - serverless etc.
+		Big improvement for large set of apps without changing them
+			StorSimple
+			SQL Stretch DB
+			Azure MFA
+			Backup to Azure
+			DR to Azure
+		Categorize apps in 4-quadrant diagram
+			High Value / Easy to migrate - main focus on start
+			High Value / Difficult to migrate - long term bets
+			Low Value / Easy to migrate - quick wins
+			Low Value / Difficult to migrate - pursue later
+	Do not miss opportunity to modernize (start with biggest gains)
+		1. look at SaaS options with Office 365, Dynamics 365, OneDrive, ...
+		2. look into modernize your apps to PaaS, learn to develop in cloud
+		3. build application in cloud
+		4. lift and shift VMs to cloud
+		5. App not ready? Leave it in privat cloud and start with different one
+	Recommended principles
+		Lean
+			Fail fast, learn fast, scale fast
+			Try many, use what works
+		Push the boundaries
+			Design new application for PaaS
+			Refactor legacy for PaaS
+			Create PoR (to-do list for getting cloud benefits)
+		Make data-driven decisions
+			Experiment, get feedback and experience
+			Manage your costs
+			Use telemetry
+			Understand your blockers
+			Manage your PoR
+		Simplify
+			Retire legacy when it no longer has business purpose
+			Right-size
+			Clean-up your CMDB
+			Review apps and resources with close-to-zero usage
+		Communicate
+			Be transparent, communicate lows, higs, impact
+			Understand stakeholders, find power sponsor
+			Share learnings and best practicies
+	Typical strategy
+		Understand your existing applications, create catalog
+		Define criteria to identify good candidates to move/modernize
+		Architect integration of cloud to your IT (identity, networking, security)
+		Learn to develop in cloud
+		Revisit you change management and processes
+Why Azure
+	Economies of scale, cost sharing
+		Less overhead (example: cloud control plane nodes)
+		Special hardware sharing (FPGA, neural networks, HSM)
+		Efficient admin/server ratio (time investment into automation)
+		Maximum security (policy, auditing, physical, data wiping)
+	Flexible cost (pay-as-you-go)
+		Get more at a minute you need (Christmas, Black Friday)
+		Turn some resources off and stop paying (night, summer, weekend)
+		No risky investment, lean and agile approach (try and learn)
+	Innovation cycle
+		No need to wait for depreciation (change what you use when you like)
+	Instantly available
+		Get it when you need it (no new tender, order, installation)
+		No need to spend year building platform, just use it (time to market)
+	Automated - DevOps and Infrastructure as Code
+		Repeatable
+		More secure and under control
+		Executable documentation (Infra as code)
+		Collaboration and sharing
+Azure TCO/ROI
+	Why static TCO calculation does not work for cloud
+		Resources can be allocated dynamicaly, use when needed
+		Agility brings more business value (harder to calculate)
+	TCO tips
+		Always ask about utilization
+		Understand static TCO baseline
+			Compute cost
+				Understand physical resources
+				Virtualization ratio (VMs per host)
+				Virtualized percentage (virtualized vs. physical workloads)
+			Storage cost
+				Primary array
+				NAS/DAS
+				Backup
+				Archiving
+			Networking cost (LAN/SAN)
+			Electricity
+			Facility (Data Center)
+			Virtualization cost
+			Software (OS) cost
+			IT labor
+				VMs / servers per admin
+				Include time-off etc.
+		Understand seasonality and dynamics of business
+			Resources needed vs. release cycle of Dev teams
+			Day vs. night needs
+			Batch processing
+			Seasonal effects (Christmas, Holidays, Weekends, ...)
+			Events and marketing (how drives resource needs)
+			Example:
+				On-premise - acceptable user experience
+					Need to run 5 VMs
+				Cloud - better user experience
+					Run 3-8 VMs (dynamic number based on load) - 5 VMs in averga
+					Run 1-3 VMs over night - 1 VMs on average
+					Run 1-3 VMs over weekend - 2 VMs on average
+					Run 10 VMs before Christmass
+					Run 3 VMs on holidays
+					Counting just one ordinary week - about 40% savings in resources needed
+		Indirect costs
+			What is cost of downtime
+			Lost productivity due to waiting (eg. DevTest waiting for resources)
+			Slower time-to-market due to slow releases
+			Missed market opportunities
+				Not able to mine data customer already has
+				Not able to deliver modern services and interfaces before competition
+			Inability to run cheap experiments hurts innovation
+				Less learning
+				Costly bets
+				Too expensive mistakes
+	tco.microsoft.com
+	azurepathfinder.com
